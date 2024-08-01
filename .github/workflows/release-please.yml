@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       releases_created: ${{ steps.release.outputs.releases_created }}
+      paths_released: ${{ steps.release.outputs.paths_released }}
       major: ${{ steps.release.outputs.major }}
       minor: ${{ steps.release.outputs.minor }}
       patch: ${{ steps.release.outputs.patch }}
@@ -30,6 +31,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Echo releases_created
+        run: echo "${{ steps.release.outputs.releases_created }}"
+      - name: Echo paths_released
+        run: echo "${{ steps.release.outputs.paths_released }}"
+      - name: Echo major 
+        run: echo "${{ needs.release-please.outputs.major }}"
+      - name: Echo minor 
+        run: echo "${{ needs.release-please.outputs.minor }}"
+      - name: Echo patch 
+        run: echo "${{ needs.release-please.outputs.patch }}"
       - uses: actions/setup-java@v4
         with:
           java-version: '21'
