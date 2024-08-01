@@ -24,6 +24,16 @@ jobs:
         id: release
         with:
           release-type: maven
+      - name: Echo releases_created
+        run: echo "${{ steps.release.outputs.releases_created }}"
+      - name: Echo paths_released
+        run: echo "${{ steps.release.outputs.paths_released }}"
+      - name: Echo major 
+        run: echo "${{ steps.release.outputs.major }}"
+      - name: Echo minor 
+        run: echo "${{ steps.release.outputs.minor }}"
+      - name: Echo patch 
+        run: echo "${{ steps.release.outputs.patch }}"
 
   release:
     needs: release-please
